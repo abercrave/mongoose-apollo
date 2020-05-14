@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export default gql`
   type Author {
-    _id: ID!
+    id: ID!
     name: String
     books: [Book]!
   }

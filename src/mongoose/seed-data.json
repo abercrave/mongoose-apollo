@@ -1,0 +1,23 @@
+{
+  "authors": [
+    {
+      "name": "Mark Lawrence",
+      "books": [
+        {
+          "title": "Prince of Thorns"
+        }
+      ]
+    },
+    {
+      "name": "Iain M. Banks",
+      "books": [
+        {
+          "title": "Consider Phlebas"
+        },
+        {
+          "title": "Use of Weapons"
+        }
+      ]
+    }
+  ]
+}

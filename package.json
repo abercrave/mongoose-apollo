@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:db": "brew services start mongodb-community",
-    "start": "yarn start:db && rimraf ./node_modules/.cache/babel-loader && nodemon --exec babel-node ./src/index.js",
-    "stop:db": "brew services stop mongodb-community",
+    "db:seed": "npx babel-node ./src/mongoose/seed-database.js",
+    "db:start": "brew services start mongodb-community",
+    "db:stop": "brew services stop mongodb-community",
+    "start": "yarn db:start && rimraf ./node_modules/.cache/babel-loader && nodemon --exec babel-node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
