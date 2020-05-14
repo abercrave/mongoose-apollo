@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-datasource-mongodb": "^0.2.6",
     "apollo-server-express": "^2.13.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

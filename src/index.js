@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 apollo.applyMiddleware({ app });
 
 connection.once('open', () => {
-  logger.info('Database connected.');
+  logger.info('🔌 Database connected.');
 
   app.listen(process.env.PORT, () => {
     logger.info(`🚀 Server ready at http://localhost:${process.env.PORT}${apollo.graphqlPath}`);

@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
 import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
-import book from './books/typedefs/book';
+import Author from './authors/typedefs/author';
+import Book from './books/typedefs/book';
 
 const baseTypeDefs = gql`
+  # Empty fields obligatory
   type Query {
-    # Empty field obligatory
     _empty: String
   }
 
@@ -15,6 +16,6 @@ const baseTypeDefs = gql`
 `;
 
 export default makeExecutableSchema({
-  typeDefs: [baseTypeDefs, book],
+  typeDefs: [baseTypeDefs, Author, Book],
   resolvers,
 });
