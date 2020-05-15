@@ -1,5 +1,6 @@
 import GMR from 'graphql-merge-resolvers';
-import authors from './authors/resolvers';
-import books from './books/resolvers';
+import presents from './presents/resolvers';
+import providers from './providers/resolvers';
+import requests from './requests/resolvers';
 
-export default GMR.merge([authors, books]);
+export default GMR.merge([presents, providers, requests]);

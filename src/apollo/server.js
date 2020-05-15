@@ -1,12 +1,13 @@
 const { ApolloServer } = require('apollo-server-express');
 import schema from './schema';
-import Author from '../mongoose/models/Author';
-import Book from '../mongoose/models/Book';
+import Present from '../mongoose/models/Present';
+import Provider from '../mongoose/models/Provider';
+import Request from '../mongoose/models/Request';
 
 export default new ApolloServer({
   schema,
   context: async ({ req }) => ({
     ...req,
-    models: { Author, Book },
+    models: { Present, Provider, Request },
   }),
 });

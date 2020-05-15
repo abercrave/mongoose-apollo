@@ -1,8 +1,8 @@
 import 'dotenv/config.js';
 import connection from './connection';
-import Author from './models/Author';
-import Book from './models/Book';
-import { authors } from './seed-data.json';
+import Request from './models/Request';
+import Present from './models/Present';
+import { presents as presentsData, requests as requestsData } from './seed-data.json';
 import logger from '../services/logger';
 
 connection.once('open', async () => {
@@ -11,7 +11,7 @@ connection.once('open', async () => {
   logger.info('Removing existing records...');
 
   try {
-    await Promise.all([Author.deleteMany({}), Book.deleteMany({})]);
+    await Promise.all([Request.deleteMany({}), Present.deleteMany({})]);
     logger.info('✅ Done!');
   } catch (error) {
     logger.info('❌ Nothing to remove.');
@@ -20,27 +20,28 @@ connection.once('open', async () => {
   logger.info('Adding new records...');
 
   try {
-    for (const { name, books } of authors) {
-      const author = await new Author({
-        books: [],
-        name,
+    for (const { presents } of requestsData) {
+      const request = new Request({
+        presents: [],
       });
 
-      if (books.length) {
-        for (const { title } of books) {
-          const book = await new Book({
-            author: author.id,
-            title,
+      if (presents.length) {
+        for (const presentId of presents) {
+          const { division } = presentsData.find(present => present.id === presentId);
+
+          const present = new Present({
+            request: request._id,
+            division,
           });
 
-          author.books.push(book);
+          request.presents.push(present);
         }
       }
 
-      await author.save();
+      await request.save();
 
-      for (const book of author.books) {
-        await book.save();
+      for (const present of request.presents) {
+        await present.save();
       }
     }
 

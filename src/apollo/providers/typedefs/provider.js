@@ -1,14 +1,13 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  type Author {
-    id: ID!
+  type Provider {
+    _id: ID!
     name: String
-    books: [Book]!
   }
 
   extend type Query {
-    author(id: ID!): Author
-    authors: [Author]!
+    provider(id: ID!): Provider
+    providers: [Provider]!
   }
 `;

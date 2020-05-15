@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
 import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
-import Author from './authors/typedefs/author';
-import Book from './books/typedefs/book';
+import Present from './presents/typedefs/present';
+import Provider from './providers/typedefs/provider';
+import Request from './requests/typedefs/request';
 
 const baseTypeDefs = gql`
   # Empty fields obligatory
@@ -16,6 +17,6 @@ const baseTypeDefs = gql`
 `;
 
 export default makeExecutableSchema({
-  typeDefs: [baseTypeDefs, Author, Book],
+  typeDefs: [baseTypeDefs, Present, Provider, Request],
   resolvers,
 });

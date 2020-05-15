@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "db:seed": "npx babel-node ./src/mongoose/seed-database.js",
+    "db:seed": "BABEL_DISABLE_CACHE=1 npx babel-node ./src/mongoose/seed-database.js",
     "db:start": "brew services start mongodb-community",
     "db:stop": "brew services stop mongodb-community",
     "start": "yarn db:start && rimraf ./node_modules/.cache/babel-loader && nodemon --exec babel-node ./src/index.js",
@@ -21,6 +21,7 @@
     "graphql-merge-resolvers": "^1.1.16",
     "graphql-tools": "^5.0.0",
     "mongoose": "^5.9.13",
+    "nanoid": "^3.1.7",
     "uuid": "^8.0.0",
     "winston": "^3.2.1"
   },
