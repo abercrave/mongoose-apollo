@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const schema = new mongoose.Schema({
+const presentSchema = new mongoose.Schema({
   division: {
     type: String,
     required: true,
@@ -15,6 +15,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-const Present = mongoose.model('Present', schema);
+const Present = mongoose.model('Present', presentSchema);
 
 export default Present;

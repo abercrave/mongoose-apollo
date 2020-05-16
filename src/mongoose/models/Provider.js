@@ -1,13 +1,12 @@
 import mongoose from 'mongoose';
 
-const schema = new mongoose.Schema({
+const providerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
 });
 
-const Provider = mongoose.model('Provider', schema);
+const Provider = mongoose.model('Provider', providerSchema);
 
 export default Provider;

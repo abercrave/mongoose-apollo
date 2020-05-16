@@ -1,25 +1,37 @@
 import 'dotenv/config.js';
 import connection from './connection';
-import Request from './models/Request';
 import Present from './models/Present';
-import { presents as presentsData, requests as requestsData } from './seed-data.json';
+import Provider from './models/Provider';
+import Request from './models/Request';
+import {
+  presents as presentsData,
+  providers as providersData,
+  requests as requestsData,
+} from './seed-data.json';
 import logger from '../services/logger';
 
 connection.once('open', async () => {
   logger.info('🔌 Database connected.');
 
-  logger.info('Removing existing records...');
-
   try {
-    await Promise.all([Request.deleteMany({}), Present.deleteMany({})]);
-    logger.info('✅ Done!');
+    logger.info('Removing existing records...');
+
+    await Promise.all([
+      Present.collection.drop(),
+      Provider.collection.drop(),
+      Request.collection.drop(),
+    ]);
+
+    logger.info('Done!');
   } catch (error) {
-    logger.info('❌ Nothing to remove.');
+    logger.info('❌ Nothing to remove:', error);
   }
 
   logger.info('Adding new records...');
 
   try {
+    const providers = [];
+
     for (const { presents } of requestsData) {
       const request = new Request({
         presents: [],
@@ -27,11 +39,28 @@ connection.once('open', async () => {
 
       if (presents.length) {
         for (const presentId of presents) {
-          const { division } = presentsData.find(present => present.id === presentId);
+          const { division, provider: providerId } = presentsData.find(
+            present => present.id === presentId
+          );
+
+          const { name } = providersData.find(provider => provider.id === providerId);
+          const existingProvider = name && providers.find(provider => provider.name === name);
+          let provider;
+
+          if (existingProvider) {
+            provider = existingProvider;
+          } else {
+            provider = new Provider({
+              name,
+            });
+
+            providers.push(provider);
+          }
 
           const present = new Present({
-            request: request._id,
             division,
+            provider: provider._id,
+            request: request._id,
           });
 
           request.presents.push(present);
@@ -45,7 +74,11 @@ connection.once('open', async () => {
       }
     }
 
-    logger.info('✅ Data seeding complete!');
+    for (const provider of providers) {
+      await provider.save();
+    }
+
+    logger.info('Data seeding complete!');
     process.exit(0);
   } catch (error) {
     logger.error(`❌ Seeding failed with the error '${error}'`);
