@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "c4dc85bf-2a56-4f09-88b5-4ad67867c00f",
+		"name": "Requests Service Data POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "groupPresentsByProvider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n    groupPresentsByProvider {\n        _id\n        name\n        presents {\n            _id\n            division\n            request {\n                _id\n                requestId\n            }\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "present",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query present($id: ID!) {\n  present(id: $id) {\n    _id\n    division\n    provider {\n      _id\n      name\n    }\n    request {\n      _id\n      requestId\n    }\n  }\n}",
+						"variables": "{\n  \"id\": \"5ebf31e165f9f8eca71326a3\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "presents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  presents {\n    _id\n    division\n    provider {\n      _id\n      name\n    }\n    request {\n      _id\n      requestId\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query provider($id: ID!) {\n  provider(id: $id) {\n    _id\n    name\n  }\n}",
+						"variables": "{\n  \"id\": \"5ebf31e165f9f8eca71326a2\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "providers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  providers {\n    _id\n    name\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "providersWithPresents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  providersWithPresents {\n    _id\n    name\n    presents {\n      division\n      request {\n        _id\n        requestId\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query request($id: ID!) {\n  request(id: $id) {\n    _id\n    presents {\n      _id\n      division\n      provider {\n        _id\n        name\n      }\n    }\n  }\n}",
+						"variables": "{\n  \"id\": \"5ebf31e165f9f8eca71326a1\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "requests",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  requests {\n    _id\n    presents {\n      _id\n      division\n      provider {\n        _id\n        name\n      }\n    }\n    requestId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
