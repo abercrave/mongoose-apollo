@@ -6,6 +6,8 @@ import Provider from './providers/typedefs/provider';
 import Request from './requests/typedefs/request';
 
 const baseTypeDefs = gql`
+  scalar DateTime
+
   # Empty fields obligatory
   type Query {
     _empty: String

@@ -12,6 +12,7 @@ const requests = Array(recordCounts.requests)
   .fill(null)
   .map((item, index) => ({
     id: index,
+    createdAt: faker.date.past(1),
     presents: [],
   }));
 

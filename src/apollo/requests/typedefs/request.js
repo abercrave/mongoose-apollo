@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 export default gql`
   type Request {
     _id: ID!
+    createdAt: DateTime
     presents: [Present]!
     requestId: String
   }

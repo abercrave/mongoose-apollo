@@ -48,6 +48,9 @@ export const requestsWithPresents = async (parent, args, { models: { Present } }
     {
       $group: {
         _id: '$request._id',
+        createdAt: {
+          $first: '$request.createdAt',
+        },
         presents: {
           $addToSet: {
             _id: '$_id',
@@ -67,7 +70,7 @@ export const requestsWithPresents = async (parent, args, { models: { Present } }
     },
     {
       $sort: {
-        requestId: 1,
+        createdAt: 1,
       },
     },
   ]);

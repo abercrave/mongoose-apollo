@@ -32,8 +32,9 @@ connection.once('open', async () => {
   try {
     const providers = [];
 
-    for (const { presents } of requestsData) {
+    for (const { createdAt, presents } of requestsData) {
       const request = new Request({
+        createdAt,
         presents: [],
       });
 

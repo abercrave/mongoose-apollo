@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import requestId from '../../helpers/requestId';
 
 const requestSchema = new mongoose.Schema({
+  createdAt: {
+    type: Date,
+  },
   presents: [
     {
       type: mongoose.ObjectId,
