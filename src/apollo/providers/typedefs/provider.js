@@ -10,6 +10,6 @@ export default gql`
   extend type Query {
     provider(id: ID!): Provider
     providers: [Provider]!
-    providersWithPresents: [Provider]!
+    groupPresentsByProvider: [Provider]!
   }
 `;

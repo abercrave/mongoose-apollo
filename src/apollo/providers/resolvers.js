@@ -3,7 +3,7 @@ export const provider = async (parent, { id }, { models: { Provider } }) =>
 
 export const providers = async (parent, args, { models: { Provider } }) => await Provider.find();
 
-export const providersWithPresents = async (parent, args, { models: { Present } }) =>
+export const groupPresentsByProvider = async (parent, args, { models: { Present } }) =>
   await Present.aggregate([
     {
       $lookup: {
@@ -61,6 +61,6 @@ export default {
   Query: {
     provider,
     providers,
-    providersWithPresents,
+    groupPresentsByProvider,
   },
 };

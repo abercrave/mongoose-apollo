@@ -10,11 +10,11 @@ Below are the average response times of the 3 queries. The time to seed MongoDB 
 
 Caveat: the app is running on my laptop rather than a lambda, and I’m not dealing with EDM data.
 
-## 1. providersWithPresents
+## 1. groupPresentsByProvider
 
 Uses Mongoose’s aggregate method to execute a MQL query that aggregates present and request data, groups by provider, and sorts by provider name.
 
-Times to retrieve 15,000 records:
+Times to retrieve 4745 records:
 
 1.  2.6s
 2.  2.76s
@@ -48,24 +48,24 @@ Times to retrieve 15,000 records:
 
 Average: 1.49s
 
-## 3. requestsWithPresents
+## 3. groupPresentsByRequest
 
 Uses Mongoose’s aggregate method to execute a MQL query that aggregates present and provider data, groups by request ID, and sorts by request creation date.
 
 Times to retrieve 1,000 records:
 
-1.  1.67s
-2.  1.51s
-3.  1.23s
-4.  1.23s
-5.  1.41s
-6.  1.28s
-7.  1.22s
-8.  1.24s
-9.  1.34s
-10. 1.23s
+1.  3.44s
+2.  3.09s
+3.  3.13s
+4.  3.40s
+5.  3.49s
+6.  3.52s
+7.  3.31s
+8.  3.54s
+9.  3.58s
+10. 3.51s
 
-Average: 1.34s
+Average: 3.4s
 
 ## 4. requests
 

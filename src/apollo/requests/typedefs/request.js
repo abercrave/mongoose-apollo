@@ -11,6 +11,6 @@ export default gql`
   extend type Query {
     request(id: ID!): Request
     requests: [Request]!
-    requestsWithPresents: [Request]!
+    groupPresentsByRequest: [Request]!
   }
 `;

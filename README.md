@@ -47,6 +47,7 @@ All requests:
 {
   requests {
     _id
+    createdAt
     presents {
       _id
       division
@@ -64,13 +65,14 @@ All presents grouped by provider:
 
 ```graphql
 {
-  providersWithPresents {
+  groupPresentsByProvider {
     _id
     name
     presents {
       division
       request {
         _id
+        createdAt
         requestId
       }
     }

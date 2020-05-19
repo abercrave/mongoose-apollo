@@ -10,7 +10,7 @@ export const requests = async (parent, args, { models: { Request } }) =>
     populate: { path: 'provider' },
   });
 
-export const requestsWithPresents = async (parent, args, { models: { Present } }) =>
+export const groupPresentsByRequest = async (parent, args, { models: { Present } }) =>
   await Present.aggregate([
     {
       $lookup: {
@@ -79,6 +79,6 @@ export default {
   Query: {
     request,
     requests,
-    requestsWithPresents,
+    groupPresentsByRequest,
   },
 };
