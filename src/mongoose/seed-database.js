@@ -7,7 +7,7 @@ import {
   presents as presentsData,
   providers as providersData,
   requests as requestsData,
-} from './seed-data.js';
+} from './generated-data.js';
 import logger from '../services/logger';
 
 connection.once('open', async () => {

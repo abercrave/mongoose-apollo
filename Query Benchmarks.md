@@ -1,87 +1,49 @@
 # Query Benchmarks
 
-I have bumped up the number of generated records to see what out-of-the-box MongoDB performance is like.
+I have bumped up the number of generated records to see how out-of-the-box MongoDB performs. Only each collection's `_id` is indexed.
 
-1. Presents: 15000
-2. Providers: 4745
-3. Requests: 1000
+1. Presents: 15000 (~8.3x more than the 1811 in Prod)
+2. Providers: 4745 (~5.6x more than the 852 in Prod)
+3. Requests: 1000 (~6.7x more than the 149 in Prod)
 
-Below are the average response times of the 3 queries. The time to seed MongoDB with data was ~34s.
+**Note:** _The number of records in Prod is accurate as of 5/19/20._
 
-Caveat: the app is running on my laptop rather than a lambda, and I’m not dealing with EDM data.
+Below are the average response times for 10 executions of each query for the:
+
+- Same number of records as Prod.
+- Arbitrarily increased number of records.
+
+The time to seed MongoDB with data was ~34s.
+
+**Caveats:**
+
+1. The app is running on a powerful, mordern laptop rather than a lambda.
+2. We're not aggregating EDM data.
 
 ## 1. groupPresentsByProvider
 
-Uses Mongoose’s aggregate method to execute a MQL query that aggregates present and request data, groups by provider, and sorts by provider name.
+Uses Mongoose’s `aggregate` method to execute a MQL query that aggregates present and request data, groups by provider, and sorts by provider name.
 
-Times to retrieve 4745 records:
-
-1.  2.6s
-2.  2.76s
-3.  2.77s
-4.  2.84s
-5.  3.45s
-6.  3.53s
-7.  3.41s
-8.  3.56s
-9.  3.52s
-10. 3.66s
-
-Average: 3.12s
+- 852 records: 366ms
+- 4745 records: 3.12s
 
 ## 2. presents
 
-Uses the standard Mongoose populate method to aggregate provider and request data, unsorted.
+Uses the standard Mongoose `populate` method to aggregate provider and request data, unsorted.
 
-Times to retrieve 15,000 records:
-
-1.  1.56s
-2.  1.59s
-3.  1.54s
-4.  1.53s
-5.  1.3s
-6.  1.41s
-7.  1.61s
-8.  1.32s
-9.  1.53s
-10. 1.51s
-
-Average: 1.49s
+- 1,811 records: 265ms
+- 15,000 records: 1.49s
 
 ## 3. groupPresentsByRequest
 
-Uses Mongoose’s aggregate method to execute a MQL query that aggregates present and provider data, groups by request ID, and sorts by request creation date.
+Uses Mongoose’s `aggregate` method to execute a MQL query that aggregates present and provider data, groups by request ID, and sorts by request creation date.
 
-Times to retrieve 1,000 records:
-
-1.  3.44s
-2.  3.09s
-3.  3.13s
-4.  3.40s
-5.  3.49s
-6.  3.52s
-7.  3.31s
-8.  3.54s
-9.  3.58s
-10. 3.51s
-
-Average: 3.4s
+- 149 records: 392ms
+- 1,000 records: 3.4s
 
 ## 4. requests
 
-Uses the standard Mongoose populate method to aggregate present and provider data, unsorted.
+Uses the standard Mongoose `populate` method to aggregate present and provider data, unsorted.
 
-Times to retrieve 1,000 records:
-
-1.  2.51s
-2.  2.20s
-3.  2.13s
-4.  1.99s
-5.  2.05s
-6.  2.05s
-7.  1.99s
-8.  2.13s
-9.  2.01s
-10. 2.04s
-
-Average: 2.11s
+- 149 records: 234ms
+- 1,000 records: 2.11s
